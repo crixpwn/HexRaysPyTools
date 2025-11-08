@@ -7,6 +7,7 @@ import idc
 from . import actions
 import HexRaysPyTools.core.helper as helper
 import HexRaysPyTools.core.const as const
+import HexRaysPyTools.core.ida_compat as ida_compat
 
 logger = logging.getLogger(__name__)
 
@@ -105,7 +106,7 @@ class CreateNewField(actions.HexRaysPopupAction):
             udt_data.insert(iterator, helper.create_padding_udt_member(offset, idx))
 
         struct_tinfo.create_udt(udt_data, idaapi.BTF_STRUCT)
-        struct_tinfo.set_numbered_type(idaapi.cvar.idati, ordinal, idaapi.BTF_STRUCT, struct_name)
+        struct_tinfo.set_numbered_type(ida_compat.get_idati(), ordinal, idaapi.BTF_STRUCT, struct_name)
         hx_view.refresh_view(True)
 
     @staticmethod
@@ -127,7 +128,7 @@ class CreateNewField(actions.HexRaysPopupAction):
 
         _, tp, fld = result
         tinfo = idaapi.tinfo_t()
-        tinfo.deserialize(idaapi.cvar.idati, tp, fld, None)
+        tinfo.deserialize(ida_compat.get_idati(), tp, fld, None)
         if arr_size:
             assert tinfo.create_array(tinfo, int(arr_size))
         return tinfo, field_name

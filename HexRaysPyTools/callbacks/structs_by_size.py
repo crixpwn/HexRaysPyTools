@@ -3,6 +3,7 @@ import idaapi
 from . import actions
 import HexRaysPyTools.forms as forms
 import HexRaysPyTools.core.type_library as type_library
+import HexRaysPyTools.core.ida_compat as ida_compat
 
 
 def _choose_structure_by_size(size):
@@ -57,7 +58,7 @@ class GetStructureBySize(actions.HexRaysPopupAction):
             operand_number = number_format_old.opnum
             number_format_new.opnum = operand_number
             number_format_new.props = number_format_old.props
-            number_format_new.type_name = idaapi.get_numbered_type_name(idaapi.cvar.idati, ordinal)
+            number_format_new.type_name = idaapi.get_numbered_type_name(ida_compat.get_idati(), ordinal)
 
             c_function = hx_view.cfunc
             number_formats = c_function.numforms    # type: idaapi.user_numforms_t
