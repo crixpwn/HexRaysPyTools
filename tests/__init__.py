@@ -1,0 +1,3 @@
+"""
+HexRaysPyTools Test Suite
+"""

@@ -184,3 +184,12 @@ UpgradeLog*.htm
 
 # Microsoft Fakes
 FakesAssemblies/
+
+# Python test and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+__pycache__/
+*.py[cod]
+*$py.class
