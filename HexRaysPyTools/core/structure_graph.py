@@ -3,6 +3,8 @@ import logging
 import idaapi
 import idc
 
+from . import ida_compat
+
 logger = logging.getLogger(__name__)
 
 
